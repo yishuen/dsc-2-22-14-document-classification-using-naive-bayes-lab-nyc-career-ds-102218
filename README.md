@@ -1,15 +1,20 @@
 
-# Document Classification Using Naive Bayes - Lab
+# Document Classification using Naive Bayes - Lab
 
-## Problem Statement
+## Introduction
+
 In this lab, we'll make use of our newfound Bayesian knowledge to classify emails as spam or not spam from the [UCI Machine Learning Repository's Spambase Dataset](https://archive.ics.uci.edu/ml/datasets/spambase).  
 
 ## Objectives
-* Work with a real-world dataset from the UCI Machine Learning Repository.
-* Classify emails as spam or not spam by making use of Naive Bayesian Classification. 
-* Evaluate the quality of our classifier by building a Confusion Matrix.
 
-Run the cell below to import everything we'll need for this lab. 
+You will be able to:
+* Work with a real-world dataset from the UCI Machine Learning Repository
+* Classify emails as spam or not spam by making use of Naive Bayesian Classification
+* Evaluate the quality of our classifier by building a Confusion Matrix
+
+## Let's get started!
+
+Run the cell below to import everything we'll need for this lab.
 
 
 ```python
@@ -53,7 +58,7 @@ In the cell below, create the array of column names and then use this array to s
 column_names = None
 ```
 
-### Cleaning and Exploring the Dataset
+## Cleaning and Exploring the Dataset
 
 Now, in the cell below, use what you've learned to clean and explore the dataset.  Make sure you check for null values, and examine the descriptive statistics for the dataset.  
 
@@ -63,7 +68,7 @@ Use the cells below for this step.
 
 **_Remember_**, if you need to add more cells, you can always highlight a cell, press `esc` to enter command mode, and then press `a` to add a cell above the highlighted cell, or `b` to add a cell below the highlighted cell. 
 
-### Analysis of Exploration
+## Analysis of Exploration
 
 Did you notice anything interesting during your EDA? Briefly explain your approach and your findings below this line:
 ________________________________________________________________________________________________________________________________
@@ -71,7 +76,7 @@ ________________________________________________________________________________
 
 
 
-### Creating Training and Testing Sets
+## Creating Training and Testing Sets
 
 Since we are using Naive Bayes for classification, we'll need to treat this like any other machine learning problem and create separate **_training sets_** and **_testing sets_** for **_holdout validation_**.  Otherwise, if we just trust the classifier's performance on the training set, we won't know for sure if the classifier has learned to detect spam emails in the real world, or just from this particular dataset.  
 
@@ -93,7 +98,7 @@ clean_df = None
 X_train, X_test, y_train, y_test = None
 ```
 
-### Fitting our Classifier
+## Fitting our Classifier
 
 Now that we have split our data into appropriate sets, we need to fit our classifier before we can make predictions and check our model's performance.
 
@@ -113,7 +118,7 @@ clf = None
 
 ```
 
-### Making Predictions
+## Making Predictions
 
 Now that we have a fitted model, we can make predictions on our testing data.  
 
@@ -124,7 +129,7 @@ In the cell below, use the appropriate method to make predictions on the data co
 preds = None
 ```
 
-### Checking Model Performance
+## Checking Model Performance
 
 Now that we have predictions, we can check the accuracy of our model's performance.  In order to do this, we'll use two different metrics: `accuracy_score` and `f1_score`.  For classification, accuracy is defined as the number of correct predictions (**_True Positives_** and **_True Negatives_**) divided by the total number of predictions.  
 
@@ -144,7 +149,7 @@ print("Accuracy Score for model: {:.4}%".format(accuracy * 100))
 print("F1 Score for model: {:.4}%".format(f1 * 100))
 ```
 
-### Digging Deeper: Using a Confusion Matrix
+## Digging Deeper: Using a Confusion Matrix
 
 Our model does pretty well, with ~81% accuracy.  However, we don't know _how_ it's failing on the 19% it got wrong.  In order to figure this out, we'll build a **_Confusion Matrix_**.
 
@@ -159,7 +164,7 @@ For every prediction our model makes, there are four possible outcomes:
 **_False Negative:_** Our model predicted that the email wasn't spam, but it was.  
 
 
-#### Question:
+### Question:
 
 Which type of misclassification is preferable to the other--False Positives or False Negatives?  In this given problem, which one is preferable to the other? Explain your answer below this line:
 ________________________________________________________________________________________________________________________________
@@ -167,7 +172,7 @@ ________________________________________________________________________________
 
 
 
-#### Building our Confusion Matrix
+### Building our Confusion Matrix
 
 In the cell below, complete the `confusion_matrix` function.  This function should take in two parameters, `predictions` and `labels`, and return a dictionary counts for `'TP', 'TN', 'FP',` and `'FN'` (True Positive, True Negative, False Positive, and False Negative, respectively).  
 
@@ -194,7 +199,7 @@ print("Training Confusion Matrix: {}".format(training_cm))
 print("Testing Confusion Matrix: {}".format(testing_cm))
 ```
 
-### Intepreting Our Results
+## Intepreting Our Results
 
 Complete the tables below, and then use them to answer the following questions.
 
@@ -220,7 +225,7 @@ ________________________________________________________________________________
 Don't worry about tuning the model for now--that's a lengthy process, and we'll cover it in depth in later labs.  For now, congratulations--you just built a working spam filter using Naive Bayesian Classification!
 
 
-### Conlclusion
+## Summary
 
 In this lab, we:
 * Worked with a real-world dataset from the UCI Machine Learning Repository.
