@@ -1,15 +1,20 @@
 
-# Text Classification Using Naive Bayes - Lab
+# Document Classification using Naive Bayes - Lab
 
-## Problem Statement
+## Introduction
+
 In this lab, we'll make use of our newfound Bayesian knowledge to classify emails as spam or not spam from the [UCI Machine Learning Repository's Spambase Dataset](https://archive.ics.uci.edu/ml/datasets/spambase).  
 
 ## Objectives
-* Work with a real-world dataset from the UCI Machine Learning Repository.
-* Classify emails as spam or not spam by making use of Naive Bayesian Classification. 
-* Evaluate the quality of our classifier by building a Confusion Matrix.
 
-Run the cell below to import everything we'll need for this lab. 
+You will be able to:
+* Work with a real-world dataset from the UCI Machine Learning Repository
+* Classify emails as spam or not spam by making use of Naive Bayesian Classification
+* Evaluate the quality of our classifier by building a Confusion Matrix
+
+## Let's get started!
+
+Run the cell below to import everything we'll need for this lab.
 
 
 ```python
@@ -459,7 +464,7 @@ df.head()
 
 
 
-### Cleaning and Exploring the Dataset
+## Cleaning and Exploring the Dataset
 
 Now, in the cell below, use what you've learned to clean and explore the dataset.  Make sure you check for null values, and examine the descriptive statistics for the dataset.  
 
@@ -761,10 +766,10 @@ sns.heatmap(corr, mask=mask, cmap=cmap, vmax=.5, center=0,
 
 
 
-![png](output_9_1.png)
+![png](index_files/index_9_1.png)
 
 
-### Analysis of Exploration
+## Analysis of Exploration
 
 Did you notice anything interesting during your EDA? Briefly explain your approach and your findings below this line:
 ________________________________________________________________________________________________________________________________
@@ -772,7 +777,7 @@ ________________________________________________________________________________
 Student should notice that the DataFrame contains no missing values.  They may notice that many cells have values of 0.0, which could be interpreted as missing values in some contexts.  However, for our purposes, this 0.0 contains information relevant to our problem (an indicator of a real email may be when it _doesn't_ contain certain words), which means that they are not a missing value in this context. Student should have a passable rationale for the type of visualization they created, and what sort of information that visualization can provide them on the dataset.  For the case of the heatmap in this example, it shows that there is some small multicollineary present in our dataset--however, it is likely not enough to present a problem (highly correlated predictors are problematic with Naive Bayes because of the "Naive" assumption of feature independence).  The bottom row of the heatmap also shows the correlation for each predictor with our target variable, `is_spam`. 
 
 
-### Creating Training and Testing Sets
+## Creating Training and Testing Sets
 
 Since we are using Naive Bayes for classification, we'll need to treat this like any other machine learning problem and create separate **_training sets_** and **_testing sets_** for **_holdout validation_**.  Otherwise, if we just trust the classifier's performance on the training set, we won't know for sure if the classifier has learned to detect spam emails in the real world, or just from this particular dataset.  
 
@@ -793,7 +798,7 @@ clean_df = df.drop('is_spam', axis=1, inplace=False)
 X_train, X_test, y_train, y_test = train_test_split(clean_df, target, stratify=target)
 ```
 
-### Fitting our Classifier
+## Fitting our Classifier
 
 Now that we have split our data into appropriate sets, we need to fit our classifier before we can make predictions and check our model's performance.
 
@@ -820,7 +825,7 @@ clf.fit(X_train, y_train)
 
 
 
-### Making Predictions
+## Making Predictions
 
 Now that we have a fitted model, we can make predictions on our testing data.  
 
@@ -831,7 +836,7 @@ In the cell below, use the appropriate method to make predictions on the data co
 preds = clf.predict(X_test)
 ```
 
-### Checking Model Performance
+## Checking Model Performance
 
 Now that we have predictions, we can check the accuracy of our model's performance.  In order to do this, we'll use two different metrics: `accuracy_score` and `f1_score`.  For classification, accuracy is defined as the number of correct predictions (**_True Positives_** and **_True Negatives_**) divided by the total number of predictions.  
 
@@ -853,9 +858,9 @@ print("F1 Score for model: {:.4}%".format(f1 * 100))
 
     Accuracy Score for model: 83.93%
     F1 Score for model: 82.53%
-    
 
-### Digging Deeper: Using a Confusion Matrix
+
+## Digging Deeper: Using a Confusion Matrix
 
 Our model does pretty well, with ~81% accuracy.  However, we don't know _how_ it's failing on the 19% it got wrong.  In order to figure this out, we'll build a **_Confusion Matrix_**.
 
@@ -870,7 +875,7 @@ For every prediction our model makes, there are four possible outcomes:
 **_False Negative:_** Our model predicted that the email wasn't spam, but it was.  
 
 
-#### Question:
+### Question:
 
 Which type of misclassification is preferable to the other--False Positives or False Negatives?  In this given problem, which one is preferable to the other? Explain your answer below this line:
 ________________________________________________________________________________________________________________________________
@@ -878,7 +883,7 @@ ________________________________________________________________________________
 Overall, this is no clear preference for one over the other.  This depends entirely on the problem domain and your goals.  In this case with our spam filter, False Negatives are highly preferable to False Positives.  If a spam email accidentally sneaks through the filter, that's a small annoyance for the user.  However, if regular emails never reach the user because they are mistakenly classified as spam, that's a huge problem. 
 
 
-#### Building our Confusion Matrix
+### Building our Confusion Matrix
 
 In the cell below, complete the `confusion_matrix` function.  This function should take in two parameters, `predictions` and `labels`, and return a dictionary counts for `'TP', 'TN', 'FP',` and `'FN'` (True Positive, True Negative, False Positive, and False Negative, respectively).  
 
@@ -923,7 +928,7 @@ print("Testing Confusion Matrix: {}".format(testing_cm))
 
     Training Confusion Matrix: {'TP': 1295, 'TN': 1536, 'FP': 555, 'FN': 64}
     Testing Confusion Matrix: {'TP': 437, 'TN': 529, 'FP': 168, 'FN': 17}
-    
+
 
 ### Intepreting Our Results
 
@@ -951,7 +956,7 @@ The False Positives rate (Predicted Spam but Is Email) are the emails getting ca
 Don't worry about tuning the model for now--that's a lengthy process, and we'll cover it in depth in later labs.  For now, congratulations--you just built a working spam filter using Naive Bayesian Classification!
 
 
-### Conclusion
+## Conclusion
 
 In this lab, we:
 * Worked with a real-world dataset from the UCI Machine Learning Repository.
