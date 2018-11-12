@@ -1,5 +1,5 @@
 
-# Bayesian Spam Filter Lab
+# Text Classification Using Naive Bayes - Lab
 
 ## Problem Statement
 In this lab, we'll make use of our newfound Bayesian knowledge to classify emails as spam or not spam from the [UCI Machine Learning Repository's Spambase Dataset](https://archive.ics.uci.edu/ml/datasets/spambase).  
